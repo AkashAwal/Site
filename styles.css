@@ -1,35 +1,191 @@
+:root {
+    --background-color-1: #ffafbd;
+    --background-color-2: #ffc3a0;
+    --button-color: #ff6b6b;
+    --button-hover: #ff8787;
+    --text-color: #ff4757;
+
+    --float-duration: 15s;
+    --float-distance: 50px;
+    --bounce-speed: 0.5s;
+    --heart-explosion-size: 1.5;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, var(--background-color-1), var(--background-color-2));
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* Floating emojis behind card */
 .floating-elements {
     position: fixed;
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 0; /* 👈 behind card */
+    z-index: 0; /* behind card */
 }
 
 .floating-emoji {
     position: absolute;
     font-size: 2rem;
-    opacity: 0.7;
+    opacity: 0.75;
     animation: floatUp linear infinite;
-    filter: blur(0.3px);
-}
-
-/* Card should be above emojis */
-.container {
-    position: relative;
-    z-index: 2;
 }
 
 @keyframes floatUp {
     0% {
-        transform: translateY(110vh) scale(0.8);
+        transform: translateY(110vh) translateX(0);
         opacity: 0;
     }
     20% {
         opacity: 0.7;
     }
     100% {
-        transform: translateY(-120px) scale(1.1);
+        transform: translateY(-120px) translateX(var(--float-distance));
         opacity: 0;
     }
+}
+
+/* Main card */
+.container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 600px;
+    margin: 20px;
+    overflow: visible !important;
+    position: relative;
+    z-index: 2; /* above emojis */
+}
+
+/* Buttons */
+.cute-btn {
+    background: var(--button-color);
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 20px;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.cute-btn:hover {
+    transform: scale(1.1);
+    background: var(--button-hover);
+}
+
+/* Hidden sections */
+.hidden {
+    display: none;
+}
+
+.secret-answer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    margin-top: 0;
+    opacity: 0.2;
+    transition: opacity 0.3s;
+    transform: scale(0.7);
+    z-index: 2;
+    animation: subtle-hint 2s infinite alternate;
+    animation-delay: 5s;
+}
+
+.secret-answer .cute-btn {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+}
+
+.secret-answer:hover {
+    opacity: 1;
+    animation: none;
+}
+
+/* Love meter */
+.love-meter {
+    position: relative;
+    width: 100%;
+    margin: 20px auto;
+    overflow: visible;
+    padding: 10px 0;
+}
+
+.love-meter p {
+    font-size: 1.2em;
+    margin: 15px 0;
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.slider {
+    width: 100%;
+    height: 25px;
+    background: linear-gradient(to right, #ff6b6b, #ff8787, #ffb8b8);
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.2);
+}
+
+/* Titles */
+h1, h2 {
+    font-family: Arial, sans-serif;
+    font-weight: 700;
+}
+
+h1 {
+    color: #ff6b6b;
+    margin-bottom: 2rem;
+}
+
+h2 {
+    color: #ff8787;
+}
+
+/* Celebration */
+.celebration-text {
+    font-size: 3em;
+    color: #ff4757;
+    font-weight: bold;
+    margin: 30px 0;
+    animation: bounce var(--bounce-speed) infinite alternate;
+}
+
+/* Music button */
+.music-controls {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.music-btn {
+    background: white;
+    color: #ff6b6b;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.music-btn:hover {
+    transform: scale(1.05);
 }
