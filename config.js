@@ -5,7 +5,7 @@ const CONFIG = {
 
     floatingEmojis: {
         hearts: ['❤️', '💖', '💝'],
-        bears: ['🧸'],
+        bears: ['🧸', '🐻'],
         frog: ['🐸'],
         sunflower: ['🌻']
     },
