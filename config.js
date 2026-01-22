@@ -12,10 +12,10 @@ const CONFIG = {
 
     questions: {
         first: {
-            text: "Will you be my Valentine? 💖",
-            yesBtn: "Yes 🥺",
-            noBtn: "No 🙈",
-            secretAnswer: "I’m already yours this Valentine❤️"
+            text: "You and me, forever? 💫💖",
+            yesBtn: "Yes, duh 😏",
+            noBtn: "No way 🙃",
+            secretAnswer: "Forever 💘"
         },
         second: {
             text: "How much do you love me?",
@@ -37,7 +37,7 @@ const CONFIG = {
 
     celebration: {
         title: "You said yes 🫶",
-        message: "Us forever ❤️",
+        message: "Guess we’re officially Valentines now 😌❤️",
         emojis: "💖💝✨"
     },
 
