@@ -12,10 +12,10 @@ const CONFIG = {
 
     questions: {
         first: {
-            text: "Will you be mine? 💖",
+            text: "Will you be my Valentine? 💖",
             yesBtn: "Yes 🥺",
             noBtn: "No 🙈",
-            secretAnswer: "Always ❤️"
+            secretAnswer: "I’m already yours this Valentine❤️"
         },
         second: {
             text: "How much do you love me?",
