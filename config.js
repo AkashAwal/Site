@@ -1,7 +1,7 @@
 const CONFIG = {
 
     valentineName: "Sanya",
-    pageTitle: "Be My Valentine 💝",
+    pageTitle: "Us, this Valentine? 🌹",
 
     floatingEmojis: {
         hearts: ['❤️', '💖', '💝'],
