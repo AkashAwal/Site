@@ -30,9 +30,9 @@ const CONFIG = {
     },
 
     loveMessages: {
-        extreme: "Crazy love 😳💝",
-        high: "So much ❤️",
-        normal: "Cute 🥰"
+        extreme: "As it should be 😌",
+        high: "Not surprising ❤️",
+        normal: "I expected that 😉"
     },
 
     celebration: {
