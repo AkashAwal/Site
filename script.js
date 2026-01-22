@@ -1,16 +1,8 @@
 const config = window.VALENTINE_CONFIG;
 
-function validateConfig() {
-    if (!config) {
-        console.error("CONFIG not loaded");
-        return;
-    }
-}
-
 document.title = config.pageTitle;
 
 window.addEventListener('DOMContentLoaded', () => {
-    validateConfig();
 
     document.getElementById('valentineTitle').textContent = `${config.valentineName}, my love...`;
 
@@ -29,9 +21,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
     createFloatingElements();
     setupMusicPlayer();
+    setInitialPosition();
 });
 
-// ✅ CREATE ALL EMOJIS (hearts + bears + frogs + sunflowers)
+/* ================= FLOATING EMOJIS ================= */
+
 function createFloatingElements() {
     const container = document.querySelector('.floating-elements');
 
@@ -42,7 +36,7 @@ function createFloatingElements() {
         ...config.floatingEmojis.sunflower
     ];
 
-    for (let i = 0; i < 25; i++) {
+    for (let i = 0; i < 28; i++) {
         const div = document.createElement('div');
         div.className = 'floating-emoji';
         div.innerHTML = allEmojis[Math.floor(Math.random() * allEmojis.length)];
@@ -51,27 +45,29 @@ function createFloatingElements() {
     }
 }
 
-function setRandomPosition(element) {
-    element.style.left = Math.random() * 100 + 'vw';
-    element.style.animationDelay = Math.random() * 5 + 's';
-    element.style.animationDuration = 12 + Math.random() * 15 + 's';
+function setRandomPosition(el) {
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.animationDelay = Math.random() * 6 + 's';
+    el.style.animationDuration = 10 + Math.random() * 18 + 's';
 }
 
-// QUESTIONS
+/* ================= QUESTIONS ================= */
+
 function showNextQuestion(n) {
     document.querySelectorAll('.question-section').forEach(q => q.classList.add('hidden'));
     document.getElementById(`question${n}`).classList.remove('hidden');
 }
 
-function moveButton(button) {
-    const x = Math.random() * (window.innerWidth - button.offsetWidth);
-    const y = Math.random() * (window.innerHeight - button.offsetHeight);
-    button.style.position = 'fixed';
-    button.style.left = x + 'px';
-    button.style.top = y + 'px';
+function moveButton(btn) {
+    const x = Math.random() * (window.innerWidth - btn.offsetWidth);
+    const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+    btn.style.position = 'fixed';
+    btn.style.left = x + 'px';
+    btn.style.top = y + 'px';
 }
 
-// LOVE METER
+/* ================= LOVE METER (INFINITE) ================= */
+
 const loveMeter = document.getElementById('loveMeter');
 const loveValue = document.getElementById('loveValue');
 const extraLove = document.getElementById('extraLove');
@@ -88,17 +84,34 @@ loveMeter.addEventListener('input', () => {
 
     if (value > 100) {
         extraLove.classList.remove('hidden');
-        if (value >= 5000) extraLove.textContent = config.loveMessages.extreme;
-        else if (value > 1000) extraLove.textContent = config.loveMessages.high;
-        else extraLove.textContent = config.loveMessages.normal;
+
+        // 🔥 INFINITE WIDTH EFFECT (RESTORED)
+        const overflow = (value - 100) / 9900;
+        const extraWidth = overflow * window.innerWidth * 0.9;
+        loveMeter.style.width = `calc(100% + ${extraWidth}px)`;
+        loveMeter.style.transition = 'width 0.25s ease';
+
+        if (value >= 5000) {
+            extraLove.textContent = config.loveMessages.extreme;
+            extraLove.classList.add('super-love');
+        } 
+        else if (value > 1000) {
+            extraLove.textContent = config.loveMessages.high;
+            extraLove.classList.remove('super-love');
+        } 
+        else {
+            extraLove.textContent = config.loveMessages.normal;
+            extraLove.classList.remove('super-love');
+        }
+
     } else {
         extraLove.classList.add('hidden');
+        loveMeter.style.width = '100%';
     }
 });
 
-window.addEventListener('DOMContentLoaded', setInitialPosition);
+/* ================= CELEBRATION ================= */
 
-// CELEBRATION
 function celebrate() {
     document.querySelectorAll('.question-section').forEach(q => q.classList.add('hidden'));
     const celebration = document.getElementById('celebration');
@@ -109,7 +122,8 @@ function celebrate() {
     document.getElementById('celebrationEmojis').textContent = config.celebration.emojis;
 }
 
-// MUSIC
+/* ================= MUSIC ================= */
+
 function setupMusicPlayer() {
     const musicControls = document.getElementById('musicControls');
     const musicToggle = document.getElementById('musicToggle');
