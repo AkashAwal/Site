@@ -60,7 +60,6 @@ const CONFIG = {
         enabled: true,
         autoplay: true,
         musicUrl: "https://res.cloudinary.com/drlp0k46i/video/upload/v1769189660/nazdeekiyan.mp3_wz6ddk.mp3",
-,
         startText: "🎵 Play",
         stopText: "🔇 Stop",
         volume: 0.5
