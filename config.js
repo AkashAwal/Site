@@ -59,7 +59,7 @@ const CONFIG = {
     music: {
         enabled: true,
         autoplay: true,
-        musicUrl: "https://res.cloudinary.com/dncywqfpb/video/upload/v1738399057/music_qrhjvy.mp3",
+        musicUrl: "https://raw.githubusercontent.com/AkashAwal/Site/main/nazdeekiyan.mp3.mp3",
         startText: "🎵 Play",
         stopText: "🔇 Stop",
         volume: 0.5
